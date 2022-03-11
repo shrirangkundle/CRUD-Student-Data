@@ -16,7 +16,7 @@ const StudentList = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:3000/api/student", requestOptions)
+    fetch("http://localhost:5000/api/student", requestOptions)
       .then((response) => response.text())
       .then((result) => {
         console.log(result);
