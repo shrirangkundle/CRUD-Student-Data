@@ -1,17 +1,18 @@
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <>
       <Navbar bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Myrsa</Navbar.Brand>
+          <Navbar.Brand href="/">Myrsa</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">New Student</Nav.Link>
-            <Nav.Link href="#pricing">Student DB</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/createStudent">New Student</Nav.Link>
+            <Nav.Link href="studentList">Student DB</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
