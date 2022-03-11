@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Shrirang",
+    "surname": "Kundle",
+    "age": 27,
+    "class": 12,
+    "school": "Campion School"
+  },
+  {
+    "name": "Shri",
+    "surname": "Kundle",
+    "age": 25,
+    "class": 10,
+    "school": "Campion School"
+  },
+  {
+    "name": "Arun",
+    "surname": "Joshi",
+    "age": 17,
+    "class": 11,
+    "school": "Campion School"
+  },
+  {
+    "name": "Vishad",
+    "surname": "Chowbey",
+    "age": 19,
+    "class": 12,
+    "school": "SPS"
+  }
+]
