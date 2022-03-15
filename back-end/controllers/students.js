@@ -2,8 +2,8 @@ const Student = require("../models/students");
 const asyncWrapper = require("../middleware/async");
 const { createCustomError } = require("../errors/customError");
 const getAllStudents = asyncWrapper(async (req, res) => {
-  const tasks = await Student.find({});
-  res.status(200).json({ tasks });
+  const students = await Student.find({});
+  res.status(200).json({ students });
 });
 
 const createStudent = asyncWrapper(async (req, res) => {
@@ -15,7 +15,7 @@ const getStudent = asyncWrapper(async (req, res, next) => {
   const { id: taskID } = req.params;
   const task = await Student.findOne({ _id: taskID });
   if (!task) {
-    return next(createCustomError(`No task with id : ${taskID}`, 404));
+    return next(createCustomError(`No student with id : ${taskID}`, 404));
   }
 
   res.status(200).json({ task });
@@ -24,7 +24,7 @@ const deleteStudent = asyncWrapper(async (req, res, next) => {
   const { id: taskID } = req.params;
   const task = await Student.findOneAndDelete({ _id: taskID });
   if (!task) {
-    return next(createCustomError(`No task with id : ${taskID}`, 404));
+    return next(createCustomError(`No student with id : ${taskID}`, 404));
   }
   res.status(200).json({ task });
 });
