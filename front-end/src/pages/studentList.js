@@ -41,7 +41,7 @@ const StudentList = () => {
       >
         {studentList.map((item, i) => {
           return (
-            <Col md={10} className="studentItem">
+            <Col md={10} className="studentItem" key={i}>
               <Card body bg="success">
                 <Row>
                   <Col md={4}>
@@ -51,7 +51,10 @@ const StudentList = () => {
                     <h3>{item.name + " " + item.surname}</h3>
                   </Col>
                   <Col md={4} className="d-flex justify-content-end">
-                    <Button variant="warning">details</Button>
+                    {/*  */}
+                    <Link to={`/studentDetails?id=${item._id}`}>
+                      <Button variant="warning">details</Button>
+                    </Link>
                   </Col>
                 </Row>
               </Card>
