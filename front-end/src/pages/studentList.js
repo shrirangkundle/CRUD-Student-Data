@@ -6,28 +6,75 @@ import NavBar from "./Component/navBar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
+import axios from "axios";
 
 const StudentList = () => {
   const [studentList, setStudentList] = useState([]);
 
-  useEffect(() => {
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
+  const getAllStudents = () => {
+    var config = {
+      method: "get",
+      url: "http://localhost:5000/api/student",
+      headers: {},
     };
 
-    fetch("http://localhost:5000/api/student", requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        console.log(result);
-        var newRes = JSON.parse(result);
-        console.log(newRes);
-        console.log(typeof newRes);
-        setStudentList(newRes.tasks);
-        console.log(studentList);
+    axios(config)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        setStudentList(response.data.tasks);
       })
-      .catch((error) => console.log("error", error));
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getAllStudents();
   }, []);
+
+  const deleteUser = (id) => {
+    var config = {
+      method: "delete",
+      url: `http://localhost:5000/api/student/${id}`,
+      headers: {},
+    };
+
+    axios(config)
+      .then(function (response) {
+        getAllStudents();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const deleteAll = () => {
+    var config = {
+      method: "delete",
+      url: "http://localhost:5000/api/student",
+      headers: {},
+    };
+
+    axios(config)
+      .then(function (response) {
+        getAllStudents();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const DeleteAllBtn = () => {
+    if (studentList.length === 0) {
+      return <h2>No Students in DB</h2>;
+    } else {
+      return (
+        <Button variant="danger" onClick={() => deleteAll()}>
+          Delete All
+        </Button>
+      );
+    }
+  };
 
   return (
     <>
@@ -50,17 +97,30 @@ const StudentList = () => {
                   <Col md={4} className="d-flex justify-content-center">
                     <h3>{item.name + " " + item.surname}</h3>
                   </Col>
-                  <Col md={4} className="d-flex justify-content-end">
-                    {/*  */}
+                  <Col md={2} className="d-flex justify-content-end">
                     <Link to={`/studentDetails?id=${item._id}`}>
                       <Button variant="warning">details</Button>
                     </Link>
+                  </Col>
+                  <Col md={2} className="d-flex justify-content-end">
+                    <Button
+                      variant="danger"
+                      onClick={() => deleteUser(item._id)}
+                    >
+                      delete
+                    </Button>
                   </Col>
                 </Row>
               </Card>
             </Col>
           );
         })}
+      </Row>
+      <Row className="topSpace25"></Row>
+      <Row md={10} className="d-flex justify-content-center">
+        <Col md={12} className="d-flex justify-content-center">
+          <DeleteAllBtn></DeleteAllBtn>
+        </Col>
       </Row>
     </>
   );

@@ -43,10 +43,16 @@ const updateStudent = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ task });
 });
 
+const deleteAllStudent = asyncWrapper(async (req, res) => {
+  const task = await Student.deleteMany({});
+  res.status(201).json({ task });
+});
+
 module.exports = {
   getAllStudents,
   createStudent,
   getStudent,
   updateStudent,
   deleteStudent,
+  deleteAllStudent,
 };
