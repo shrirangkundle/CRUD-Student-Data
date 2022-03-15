@@ -1,12 +1,24 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import "../app.css";
+import "./style/app.css";
 import NavBar from "./Component/navBar";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Lottie from "react-lottie";
+import createLottie from "./lottie/newUser.json";
 
 import axios from "axios";
+
+const createUserLottie = {
+  loop: true,
+  autoplay: true,
+  animationData: createLottie,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 const IndividualStudent = () => {
   const [editFlag, setEditFlag] = useState(false);
@@ -93,11 +105,12 @@ const IndividualStudent = () => {
   };
 
   return (
-    <>
+    <Container fluid>
       <NavBar></NavBar>
-      <Row className="topSpace25"></Row>
+      <Row>
+        <Lottie options={createUserLottie} height={150} width={150} />
+      </Row>
       <h1 className="successMsg">Add User</h1>
-      <Row className="topSpace25"></Row>
 
       <Row className="d-flex justify-content-center">
         <Col md={6}>
@@ -201,7 +214,7 @@ const IndividualStudent = () => {
           </Card>
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 

@@ -1,12 +1,24 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import "../app.css";
+import "./style/app.css";
 import NavBar from "./Component/navBar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
+import Container from "react-bootstrap/Container";
+import Lottie from "react-lottie";
+import studentListLottie from "./lottie/studentList.json";
+
+const listLottie = {
+  loop: true,
+  autoplay: true,
+  animationData: studentListLottie,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 const StudentList = () => {
   const [studentList, setStudentList] = useState([]);
@@ -77,9 +89,11 @@ const StudentList = () => {
   };
 
   return (
-    <>
+    <Container fluid>
       <NavBar></NavBar>
-      <Row className="topSpace25"></Row>
+      <Row>
+        <Lottie options={listLottie} height={250} width={250} />
+      </Row>
 
       <Row
         md={10}
@@ -122,7 +136,7 @@ const StudentList = () => {
           <DeleteAllBtn></DeleteAllBtn>
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 

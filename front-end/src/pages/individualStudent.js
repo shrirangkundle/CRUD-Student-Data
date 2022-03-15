@@ -1,12 +1,23 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import "../app.css";
+import "./style/app.css";
 import NavBar from "./Component/navBar";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-
+import Container from "react-bootstrap/Container";
 import axios from "axios";
+import Lottie from "react-lottie";
+import profileLottie from "./lottie/profile.json";
+
+const studentProfileLottie = {
+  loop: true,
+  autoplay: true,
+  animationData: profileLottie,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 const IndividualStudent = () => {
   const [editFlag, setEditFlag] = useState(false);
@@ -54,7 +65,7 @@ const IndividualStudent = () => {
 
     var config = {
       method: "patch",
-      url: "http://localhost:5000/api/student/622b103511453b1cc84a3b00",
+      url: `http://localhost:5000/api/student/${student_Id}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -85,9 +96,11 @@ const IndividualStudent = () => {
   };
 
   return (
-    <>
+    <Container fluid>
       <NavBar></NavBar>
-      <Row className="topSpace25"></Row>
+      <Row>
+        <Lottie options={studentProfileLottie} height={250} width={250} />
+      </Row>
 
       <Row className="d-flex justify-content-center">
         <Col md={6}>
@@ -186,7 +199,7 @@ const IndividualStudent = () => {
           </Card>
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 
