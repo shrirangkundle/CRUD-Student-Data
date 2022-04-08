@@ -1,4 +1,4 @@
-# Myrsa-technology
+# CRUD-Student-Data
 
 MERN (Mongo,React,Express,Node) has been used to create this application.
 
